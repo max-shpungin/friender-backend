@@ -1,6 +1,6 @@
 const express = require("express");
 
-const db = require("../db.js");//FIXME: needs updates probably
+const db = require("../db.js");
 const router = new express.Router();
 const User = require("../models/User")
 
@@ -9,6 +9,13 @@ router.get("/", async function (req, res, next) {
   console.log('users route')
   const users = await User.getAllUsers();
   return res.json({ users });
+});
+
+router.post("/", async function (req, res, next) {
+  console.log('users route: post')
+
+  const user = await User.registerUser(req.body);
+  return res.status(201).json({ user });
 });
 
 /** DELETE /users/[id]: delete user, return {message: Deleted} */

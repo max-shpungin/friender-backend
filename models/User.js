@@ -6,7 +6,42 @@ const db = require("../db");
 class User {
 
   /** Make SQL query to Postgres to create a user on the Users table */
-  static async registerUser() { }
+  static async registerUser(
+    { username,
+      password,
+      hobbies,
+      number_street_name,
+      city,
+      friend_radius,
+      photo_url }
+  ) {
+    const result = await db.query(`
+    INSERT INTO users
+    (username,
+      password,
+      hobbies,
+      number_street_name,
+      city, friend_radius,
+      photo_url)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    RETURNING
+      username,
+      hobbies,
+      number_street_name,
+      city,
+      friend_radius,
+      photo_url`,
+      [username,
+        password,
+        hobbies,
+        number_street_name,
+        city, friend_radius,
+        photo_url]);
+
+    const user = result.rows[0];
+
+    return user;
+  }
 
   /** Make SQL query to Postgres to validate user when logging in */
   // Probably handled via passport module
