@@ -5,14 +5,14 @@ CREATE TABLE users (
   number_street_name VARCHAR(50),
   city VARCHAR(50),
   friend_radius INTEGER CHECK (friend_radius > 5),
-  photo_url TEXT,
+  photo_url TEXT
 );
 
 CREATE TABLE messages (
   content TEXT,
-  sent_at TIMESTAMP WITH LOCAL TIME ZONE,
+  sent_at TIMESTAMP WITH TIME ZONE,
   id SERIAL PRIMARY KEY,
-  sent_by REFERENCES users
-  sent_to REFERENCES users
+  sent_by VARCHAR(25) NOT NULL REFERENCES users,
+  sent_to VARCHAR(25) NOT NULL REFERENCES users
 );
 
