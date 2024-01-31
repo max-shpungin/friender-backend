@@ -16,6 +16,8 @@ router.post("/", async function (req, res, next) {
 
   const user = await User.registerUser(req.body);
   return res.status(201).json({ user });
+
+  // handle the file somehow this as the endpoint.
 });
 
 /** DELETE /users/[id]: delete user, return {message: Deleted} */
