@@ -6,6 +6,8 @@
 
 require("dotenv").config();
 
+const PORT = +process.env.PORT || 3001
+
 const DB_URI = (process.env.NODE_ENV === "test")
     ? "postgresql:///friender_test"
     : "postgresql:///friender";
@@ -16,5 +18,6 @@ const SECRET_KEY = process.env.SECRET_KEY || "secret";
 
 module.exports = {
   DB_URI,
-  SECRET_KEY
+  SECRET_KEY,
+  PORT
 };

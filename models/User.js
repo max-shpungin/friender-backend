@@ -13,7 +13,14 @@ class User {
   static async authenticateUser() { }
 
   /** Make SQL query to Postgres to get all users from Users table */
-  static async getAllUsers() { }
+  static async getAllUsers() {
+    const result = await db.query(`
+      SELECT username, password, hobbies, number_street_name, city, friend_radius, photo_url
+      FROM users
+      ORDER BY username`
+    );
+    return result.rows;
+  }
 
   /** Make SQL query to Postgres to get all users from Users table */
   static async getUser() { }

@@ -1,14 +1,18 @@
 const express = require("express");
+
 const { NotFoundError } = require("./expressError");
+
 const app = express();
+
+const userRoutes = require("./routes/userRoutes");
+
+
 
 // process JSON body => req.body
 app.use(express.json());
 
 
-app.get('/',function(req,res,next){
-  return
-})
+app.use('/users', userRoutes);
 
 /** 404 handler: matches unmatched routes. */
 app.use(function (req, res) {
@@ -22,3 +26,5 @@ app.use(function (err, req, res, next) {
   if (process.env.NODE_ENV !== "test") console.error(status, err.stack);
   return res.status(status).json({ error: { message, status } });
 });
+
+module.exports = app;
