@@ -3,13 +3,26 @@ const db = require("../db");
 
 /** User static class and methods for interacting with DB */
 
-class User{
+class User {
+
+  /** Make SQL query to Postgres to create a user on the Users table */
+  static async registerUser() { }
+
+  /** Make SQL query to Postgres to validate user when logging in */
+  // Probably handled via passport module
+  static async authenticateUser() { }
 
   /** Make SQL query to Postgres to get all users from Users table */
-  static async getAllUsers(){}
+  static async getAllUsers() { }
 
   /** Make SQL query to Postgres to get all users from Users table */
-  static async getUser(){}
+  static async getUser() { }
+
+  /** Make SQL query to Postgres to edit user */
+  static async editUser() { }
+
+  /** Make SQL query to Postgres to delete user */
+  static async deleteUser() { }
 
 }
 
