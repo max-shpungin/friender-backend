@@ -12,7 +12,11 @@ const userRoutes = require("./routes/userRoutes");
 app.use(express.json());
 
 
-app.use('/users', userRoutes);
+app.use("/users", userRoutes);
+
+app.get("/test", function(req, res){
+  return res.send('hello');
+});
 
 /** 404 handler: matches unmatched routes. */
 app.use(function (req, res) {
