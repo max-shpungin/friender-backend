@@ -15,8 +15,8 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 
-app.get("/test", function(req, res){
-  return res.send('hello');
+app.post("/test", function(req, res){
+  console.log("req test", req)
 });
 
 /** 404 handler: matches unmatched routes. */
