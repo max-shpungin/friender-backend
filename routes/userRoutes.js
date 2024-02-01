@@ -9,11 +9,6 @@ const s3 = new AWS.S3();
 const upload = multer();
 const myBucket = process.env.AWS_BUCKET_NAME;
 
-
-
-
-
-
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -52,7 +47,7 @@ router.post("/", async function (req, res, next) {
 });
 
 router.patch("/:username", upload.single('file'), async function (req, res) {
-  const {username} = req.params
+  const {username} = req.params;
   console.log("back-end route username param: ", username);
 
   try {
@@ -63,15 +58,17 @@ router.patch("/:username", upload.single('file'), async function (req, res) {
       ContentType: req.file.mimetype
     };
 
+    console.log("PATCH image, aws params", params);
+
     const uploadResult = await s3.upload(params).promise();
 
-    res.json({ message: "OMG WE DID IT!!!!", url: uploadResult.Location });
+    //res.json({ message: "OMG WE DID IT!!!!", url: uploadResult.Location });
 
     // uploadResult.Location gives back URL, how to put this in the db with
     // the right user
 
     const editedUser = User.editUserImage(username, uploadResult.Location)
-    return res.json({editedUser});
+    return res.json({message:"updated photo!", editedUser});
 
   } catch (err) {
     console.error(err);

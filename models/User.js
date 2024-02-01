@@ -77,7 +77,7 @@ class User {
   /** Make SQL query to Postgres to edit user profile image */
   static async editUserImage(username, photoUrl) {
     const result = await db.query(`
-      UPDATE users photo_url = $1
+      UPDATE users SET photo_url = $1
       WHERE username = $2
       RETURNING username, photo_url`,
       [photoUrl, username]);

@@ -29,28 +29,28 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 
-app.post("/test", upload.single('file'), async function (req, res) {
-  try {
-    const params = {
-      Bucket: process.env.AWS_BUCKET_NAME,
-      Key: req.file.originalname,
-      Body: req.file.buffer,
-      ContentType: req.file.mimetype
-    };
+// app.post("/test", upload.single('file'), async function (req, res) {
+//   try {
+//     const params = {
+//       Bucket: process.env.AWS_BUCKET_NAME,
+//       Key: req.file.originalname,
+//       Body: req.file.buffer,
+//       ContentType: req.file.mimetype
+//     };
 
-    const uploadResult = await s3.upload(params).promise();
+//     const uploadResult = await s3.upload(params).promise();
 
-    res.json({ message: "OMG WE DID IT!!!!", url: uploadResult.Location });
+//     res.json({ message: "OMG WE DID IT!!!!", url: uploadResult.Location });
 
-    // uploadResult.Location gives back URL, how to put this in the db with
-    // the right user
+//     // uploadResult.Location gives back URL, how to put this in the db with
+//     // the right user
 
 
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "oh dear D:" });
-  }
-});
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: "oh dear D:" });
+//   }
+// });
 
 /** 404 handler: matches unmatched routes. */
 app.use(function (req, res) {
