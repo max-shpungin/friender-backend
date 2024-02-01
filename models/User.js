@@ -61,7 +61,7 @@ class User {
   /** Make SQL query to Postgres to get all users from Users table */
   static async getUser(username) {
     const result = await db.query(`
-    SELECT username, hobbies, number_street_name, city, friend_radius, photourl
+    SELECT username, hobbies, number_street_name, city, friend_radius, photo_url
     FROM users
     WHERE username = $1`,
     [username]);

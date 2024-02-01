@@ -18,7 +18,7 @@ router.get("/:username", async function (req, res, next) {
 
   console.log('username route')
   const user = await User.getUser(username);
-  return user.json();
+  return res.json(user);
 
 });
 
