@@ -64,15 +64,28 @@ class User {
     SELECT username, hobbies, number_street_name, city, friend_radius, photo_url
     FROM users
     WHERE username = $1`,
-    [username]);
+      [username]);
 
-  const user = result.rows[0];
+    const user = result.rows[0];
 
-  return user;
+    return user;
   }
 
   /** Make SQL query to Postgres to edit user */
   static async editUser() { }
+
+  /** Make SQL query to Postgres to edit user profile image */
+  static async editUserImage(username, photoUrl) {
+    const result = await db.query(`
+      UPDATE users photo_url = $1
+      WHERE username = $2
+      RETURNING username, photo_url`,
+      [photoUrl, username]);
+
+    const editedUser = result.rows[0];
+
+    return editedUser;
+  }
 
   /** Make SQL query to Postgres to delete user */
   static async deleteUser() { }

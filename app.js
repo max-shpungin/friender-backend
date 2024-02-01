@@ -42,6 +42,10 @@ app.post("/test", upload.single('file'), async function (req, res) {
 
     res.json({ message: "OMG WE DID IT!!!!", url: uploadResult.Location });
 
+    // uploadResult.Location gives back URL, how to put this in the db with
+    // the right user
+
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "oh dear D:" });
