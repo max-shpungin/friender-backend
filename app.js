@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
+const multer = require('multer');
+
 
 const { NotFoundError } = require("./expressError");
-
-
 const userRoutes = require("./routes/userRoutes");
 
 
+//this is the bucket storage stuff
+const upload = multer({ dest: 'uploads/' })
 
 const app = express();
 app.use(cors());
@@ -15,8 +17,8 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 
-app.post("/test", function(req, res){
-  console.log("req test", req)
+app.post("/test", upload.single('file'), function(req, res){
+  console.log("req test", req.file)
 });
 
 /** 404 handler: matches unmatched routes. */
