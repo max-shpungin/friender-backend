@@ -59,7 +59,17 @@ class User {
   }
 
   /** Make SQL query to Postgres to get all users from Users table */
-  static async getUser() { }
+  static async getUser(username) {
+    const result = await db.query(`
+    SELECT username, hobbies, number_street_name, city, friend_radius, photourl
+    FROM users
+    WHERE username = $1`,
+    [username]);
+
+  const user = result.rows[0];
+
+  return user;
+  }
 
   /** Make SQL query to Postgres to edit user */
   static async editUser() { }

@@ -11,6 +11,17 @@ router.get("/", async function (req, res, next) {
   return res.json({ users });
 });
 
+/** GET /users: get list of users */
+router.get("/:username", async function (req, res, next) {
+
+  const {username} = req.params;
+
+  console.log('username route')
+  const user = await User.getUser(username);
+  return user.json();
+
+});
+
 router.post("/", async function (req, res, next) {
   console.log('users route: post')
 
