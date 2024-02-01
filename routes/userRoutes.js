@@ -14,6 +14,10 @@ router.get("/", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   console.log('users route: post')
 
+  const photo = req.body.photo;
+
+  console.log('BACKEND: POST: req.body',req.body);
+  console.log('BACKEND: POST: req.body.photo',photo);
   const user = await User.registerUser(req.body);
   return res.status(201).json({ user });
 
