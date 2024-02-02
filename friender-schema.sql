@@ -9,10 +9,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE messages (
-  content TEXT,
-  sent_at TIMESTAMP WITH TIME ZONE,
   id SERIAL PRIMARY KEY,
-  sent_by VARCHAR(25) NOT NULL REFERENCES users,
-  sent_to VARCHAR(25) NOT NULL REFERENCES users
+  message_content TEXT
 );
 

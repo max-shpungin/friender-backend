@@ -28,34 +28,6 @@ VALUES ('jacksmith',
         7,
         'cool url');
 
-INSERT INTO messages (content, sent_at, sent_by, sent_to)
-VALUES (
-    'sup',
-    '2024-01-19 10:23:54+02',
-    'janesmith',
-    'jacksmith'
-),
-(
-    'heeeeeey',
-    '2024-01-19 10:25:54+02',
-    'janesmith',
-    'jacksmith'
-),
-(
-    'pick up dude',
-    '2024-01-19 10:27:54+02',
-    'janesmith',
-    'jacksmith'
-),
-(
-    'leave me alone',
-    '2024-01-19 10:29:54+02',
-    'jacksmith',
-    'janesmith'
-),
-(
-    'spy things are everywhere',
-    '2024-01-19 10:28:54+02',
-    'nighthawk',
-    'jacksmith'
-);
+
+INSERT INTO messages (message_content)
+VALUES ('welcome to the friender chatroom');

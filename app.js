@@ -20,6 +20,7 @@ const myBucket = process.env.AWS_BUCKET_NAME;
 
 const { NotFoundError } = require("./expressError");
 const userRoutes = require("./routes/userRoutes");
+const messagesRoutes = require("./routes/messagesRoutes");
 
 
 app.use(cors());
@@ -28,6 +29,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", userRoutes);
+app.use("/messages", messagesRoutes);
 
 // app.post("/test", upload.single('file'), async function (req, res) {
 //   try {

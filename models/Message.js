@@ -1,3 +1,5 @@
+const db = require("../db");
+
 /** User static class and methods for interacting with DB */
 
 class Message {
@@ -7,7 +9,14 @@ class Message {
 
 
   /** Make SQL query to Postgres to get all messages from Messages table */
-  static async getAllMessages() { }
+  static async getAllMessages() {
+    const result = await db.query(`
+    SELECT message_content
+    FROM messages
+    ORDER BY id DESC`)
+
+    return result.rows
+  }
 
   /** Make SQL query to Postgres to get single message from Messages table */
   static async getMessage() { }
