@@ -46,6 +46,19 @@ router.post("/", async function (req, res, next) {
   // handle the file somehow this as the endpoint.
 });
 
+router.post("/login", async function (req, res, next) {
+  console.log('users route: post users/login')
+
+  console.log('BACKEND: POST: req.body',req.body);
+
+
+  const user = await User.loginUser(req.body);
+
+  console.log('BACKEND API: POST user', user);
+  return res.status(201).json({ user });
+
+});
+
 router.patch("/:username", upload.single('file'), async function (req, res) {
   const {username} = req.params;
   console.log("back-end route username param: ", username);

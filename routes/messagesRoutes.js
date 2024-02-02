@@ -26,6 +26,8 @@ router.post("/", async function (req, res, next) {
   return res.status(201).json({ user });
 
   // handle the file somehow this as the endpoint.
+
+
 });
 
 module.exports = router;

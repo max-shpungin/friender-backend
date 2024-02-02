@@ -1,4 +1,5 @@
 const db = require("../db");
+const {UnauthorizedError} = require("../expressError")
 //prob import errors as we need them
 
 /** User static class and methods for interacting with DB */
@@ -44,8 +45,28 @@ class User {
   }
 
   /** Make SQL query to Postgres to validate user when logging in */
-  // Probably handled via passport module
-  static async authenticateUser() { }
+
+  static async loginUser({username, password}) {
+    const result = await db.query(`
+    SELECT username, password
+    FROM users
+    WHERE username = $1`, [username]
+    );
+
+    const user = result.rows[0]; // username, password
+
+    if (user) {
+      // compare hashed password to a new hash from password
+      const isValid = (password === user.password)
+
+      if (isValid === true) {
+        delete user.password;
+        return user;
+      }
+    }
+
+    throw new UnauthorizedError("Invalid username/password");
+  }
 
   /** Make SQL query to Postgres to get all users from Users table */
   static async getAllUsers() {
