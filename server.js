@@ -1,16 +1,21 @@
 "use strict";
 
 const app = require("./app");
-const httpServer = require("http").createServer(app);
-const io = require('socket.io')(httpServer, {
+//const httpServer = require("http").createServer(app);
+const { PORT } = require("./config");
+const Message = require("./models/Message");
+
+
+const server = app.listen(PORT, function () {
+  console.log(`Started on http://localhost:${PORT}`);
+});
+
+const io = require('socket.io')(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origins: "*:*",
     methods: ["GET", "POST"]
   }
 });
-
-const Message = require("./models/Message")
-const { PORT } = require("./config");
 
 io.on('connection', (socket) => {
   console.log('User connected');
@@ -32,8 +37,6 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(3002);
+// server.listen(3002);
 
-app.listen(PORT, function () {
-  console.log(`Started on http://localhost:${PORT}`);
-});
+
