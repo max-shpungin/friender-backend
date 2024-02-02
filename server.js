@@ -19,7 +19,8 @@ io.on('connection', (socket) => {
     console.log('Message:', message);
     // Broadcast the message to all connected clients
 
-    //TODO: I feel dirty and this feels hacky somehow
+    //TODO: IIEF to send a message to the db
+    // I feel dirty and this feels hacky somehow
     (async ()=>{
       await Message.createMessage(message);
     })();
