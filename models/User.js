@@ -54,7 +54,7 @@ class User {
       FROM users
       ORDER BY username`
     );
-    console.log('getAllUsers, result', result);
+    //console.log('getAllUsers, result', result);
     return result.rows;
   }
 
