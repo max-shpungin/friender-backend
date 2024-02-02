@@ -9,6 +9,7 @@ const io = require('socket.io')(httpServer, {
   }
 });
 
+const Message = require("./models/Message")
 const { PORT } = require("./config");
 
 io.on('connection', (socket) => {
@@ -17,6 +18,12 @@ io.on('connection', (socket) => {
   socket.on('message', (message) => {
     console.log('Message:', message);
     // Broadcast the message to all connected clients
+
+    //TODO: I feel dirty and this feels hacky somehow
+    (async ()=>{
+      await Message.createMessage(message);
+    })();
+
     io.emit('message', message);
   });
   socket.on('disconnect', () => {

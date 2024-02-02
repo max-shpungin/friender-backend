@@ -5,7 +5,12 @@ const db = require("../db");
 class Message {
 
   /** Make SQL query to Postgres to create a message on the Messages table */
-  static async createMessage() { }
+  static async createMessage(message_content) {
+    const result = db.query(`
+      INSERT INTO messages (message_content)
+      VALUES ($1)
+    `, [message_content]);
+   }
 
 
   /** Make SQL query to Postgres to get all messages from Messages table */
@@ -13,7 +18,7 @@ class Message {
     const result = await db.query(`
     SELECT message_content
     FROM messages
-    ORDER BY id DESC`)
+    ORDER BY id ASC`)
 
     return result.rows
   }
