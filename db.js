@@ -1,15 +1,16 @@
 /** Database setup for users. */
 
 const { Client } = require("pg");
+const {getDatabaseUri} = require("./config")
 
-const DB_URI = process.env.NODE_ENV === "test"  // 1
-    ? "postgresql:///friender_test"
-    : "postgresql:///friender";
+// const DB_URI = process.env.NODE_ENV === "test"  // 1
+//     ? "postgresql:///friender_test"
+//     : "postgresql:///friender";
 
 let db = new Client({
-  connectionString: DB_URI
+  connectionString: getDatabaseUri()
 });
 
-db.connect();                                   // 2
+db.connect();
 
-module.exports = db;                            // 3
+module.exports = db;
