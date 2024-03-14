@@ -1,0 +1,1 @@
+This is the backend code for Friender - a chatroom built using websockets, React JS, Express, PostgresQL, and AWS S3. You can find more details in the accompanying frontend repository [here](https://github.com/max-shpungin/friender-frontend)
